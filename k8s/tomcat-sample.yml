@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-sample
+  labels:
+    app: tomcat-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat-sample
+  template:
+    metadata:
+      labels:
+        app: tomcat-sample
+    spec:
+      containers:
+      - name: tomcat-sample
+        image: tomcat-sample:latest
+        imagePullPolicy: Never # Needed for minikube local images
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 250m
+          limits:
+            memory: 256Mi
+            cpu: 500m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-sample
+spec:
+  selector:
+    app: tomcat-sample
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8091
+      targetPort: 8080
