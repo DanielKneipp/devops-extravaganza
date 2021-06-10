@@ -1,3 +1,4 @@
+# reference: https://www.jenkins.io/doc/book/installing/kubernetes/#install-jenkins-with-yaml-files
 apiVersion: apps/v1
 kind: Deployment
 metadata:

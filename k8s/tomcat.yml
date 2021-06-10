@@ -19,6 +19,7 @@ spec:
         image: tomcat:8
         ports:
         - containerPort: 8080
+          # hostPort: 8090 # Doesn't work with minikube on WSL2
         resources:
           requests:
             memory: 128Mi

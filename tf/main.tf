@@ -16,7 +16,7 @@ provider "aws" {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "backspace-vpc"
+  name = "my-vpc"
   cidr = "10.0.0.0/16"
 
   azs             = ["us-east-1a"]
@@ -29,7 +29,7 @@ module "vpc" {
 module "server" {
   source = "./modules/ec2"
 
-  prefix    = "backspace"
+  prefix    = "my"
   ami       = "ami-05d7cb15bfbf13b6d" # CentOS Linux 8 us-east-1
   subnet_id = module.vpc.private_subnets[0]
 }
